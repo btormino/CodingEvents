@@ -22,7 +22,7 @@ namespace CodingEvents.Controllers
 
         [HttpPost]
         [Route("/Events/Add")]
-        public IActionResult NewEvent(string name, string description)
+        public IActionResult NewEvent(string name, string description = "")
         {
             Events.Add(name, description);
 
