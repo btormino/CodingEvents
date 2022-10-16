@@ -35,7 +35,6 @@ namespace CodingEvents.Controllers
                     ContactEmail = addEventViewModel.ContactEmail,
                     Location = addEventViewModel.Location,
                     Attendees = addEventViewModel.Attendees,
-                    Registration = addEventViewModel.Registration
                 };
                 EventData.Add(newEvent);
 
@@ -75,7 +74,7 @@ namespace CodingEvents.Controllers
 
         [HttpPost]
         [Route("/Events/Edit")]
-        public IActionResult SubmitEditEventForm(int eventId, string name, string descripton, string location, double attendees, bool registration)
+        public IActionResult SubmitEditEventForm(int eventId, string name, string descripton, string location, double attendees)
         {
 
             Event editngEvent = EventData.GetById(eventId);
@@ -83,7 +82,6 @@ namespace CodingEvents.Controllers
             editngEvent.Description = descripton;
             editngEvent.Location = location;
             editngEvent.Attendees = attendees;
-            editngEvent.Registration = registration;
                 
             return Redirect("/Events");
         }
