@@ -1,5 +1,6 @@
 ﻿using CodingEvents.Data;
 using CodingEvents.Models;
+using CodingEvents.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CodingEvents.Controllers
@@ -9,24 +10,39 @@ namespace CodingEvents.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.events = EventData.GetAll();
+            List<Event> events = new List<Event>(EventData.GetAll());
 
-            return View();
+            return View(events);
         }
 
        
         public IActionResult Add ()
         {
-            return View();
+            AddEventViewModel addEventViewModel = new AddEventViewModel();
+            return View(addEventViewModel);
         }
 
         [HttpPost]
-        [Route("/Events/Add")]
-        public IActionResult NewEvent(Event newEvent)
+        public IActionResult Add(AddEventViewModel addEventViewModel)
         {
-            EventData.Add(newEvent);
+            if (ModelState.IsValid)
+            {
+                Event newEvent = new Event
+                {
 
-            return Redirect("/Events");
+                    Name = addEventViewModel.Name,
+                    Description = addEventViewModel.Description,
+                    ContactEmail = addEventViewModel.ContactEmail,
+                    Location = addEventViewModel.Location,
+                    Attendees = addEventViewModel.Attendees,
+                    Registration = addEventViewModel.Registration
+                };
+                EventData.Add(newEvent);
+
+                return Redirect("/Events");
+            }
+
+            return View(addEventViewModel);
         }
 
         public IActionResult Delete()
@@ -59,12 +75,16 @@ namespace CodingEvents.Controllers
 
         [HttpPost]
         [Route("/Events/Edit")]
-        public IActionResult SubmitEditEventForm(int eventId, string name, string descripton)
+        public IActionResult SubmitEditEventForm(int eventId, string name, string descripton, string location, double attendees, bool registration)
         {
 
             Event editngEvent = EventData.GetById(eventId);
             editngEvent.Name = name;
             editngEvent.Description = descripton;
+            editngEvent.Location = location;
+            editngEvent.Attendees = attendees;
+            editngEvent.Registration = registration;
+                
             return Redirect("/Events");
         }
     }
