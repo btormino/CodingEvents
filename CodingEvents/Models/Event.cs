@@ -9,6 +9,7 @@
         private static int nextId = 1;
         public string Location { get; set; }  
         public double Attendees { get; set; }
+        public EventType Type { get; set; }
 
 
 
