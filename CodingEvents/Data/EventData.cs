@@ -20,14 +20,15 @@ namespace CodingEvents.Data
         }
 
         // remove events
-        public static void Remove(int Id)
+        public static void Remove(int id)
         {
-            Events.Remove(Id);
+            Events.Remove(id);
         }
+
         // retrieve a single event
-        public static Event GetById(int Id)
+        public static Event GetById(int id)
         {
-            return Events[Id];
+            return Events[id];
         }
 
     

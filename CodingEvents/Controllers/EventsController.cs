@@ -7,7 +7,6 @@ namespace CodingEvents.Controllers
     public class EventsController : Controller
     {
 
-        [HttpGet]
         public IActionResult Index()
         {
             ViewBag.events = EventData.GetAll();
@@ -15,7 +14,7 @@ namespace CodingEvents.Controllers
             return View();
         }
 
-        [HttpGet]
+       
         public IActionResult Add ()
         {
             return View();
@@ -23,9 +22,9 @@ namespace CodingEvents.Controllers
 
         [HttpPost]
         [Route("/Events/Add")]
-        public IActionResult NewEvent(string name, string description)
+        public IActionResult NewEvent(Event newEvent)
         {
-            EventData.Add(new Event(name, description));
+            EventData.Add(newEvent);
 
             return Redirect("/Events");
         }
@@ -36,10 +35,11 @@ namespace CodingEvents.Controllers
 
             return View();
         }
+
         [HttpPost]
-        public IActionResult Delete(int[] eventsIds)
+        public IActionResult Delete(int[] eventIds)
         {
-            foreach(int eventId in eventsIds)
+            foreach(int eventId in eventIds)
             {
                 EventData.Remove(eventId);
             }
