@@ -5,32 +5,26 @@
         public string Name { get; set; }
         public string Description { get; set; }
         public string ContactEmail { get; set; }
-        public int Id { get; }
-        private static int nextId = 1;
+        public int Id { get; set; }
+      
         public string Location { get; set; }  
         public double Attendees { get; set; }
         public EventType Type { get; set; }
 
 
+        public Event()
+        {
+        }
 
-        public Event(string name, string description, string contactEmail, string location, double attendees) : this()
+
+        public Event(string name, string description, string contactEmail, string location, double attendees)
         {
             Name = name;
             Description = description;
             ContactEmail = contactEmail;
-            Id = nextId;
-            nextId++;
             Location = location;
             Attendees = attendees;
         }
-
-        public Event()
-        {
-            Id = nextId;
-            nextId++;
-        }
-
-
 
 
         public override string ToString()
