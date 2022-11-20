@@ -25,7 +25,9 @@ namespace CodingEvents.Controllers
        
         public IActionResult Add ()
         {
-            AddEventViewModel addEventViewModel = new AddEventViewModel();
+            List<EventCategory> categories = context.Categories.ToList();
+            AddEventViewModel addEventViewModel = new AddEventViewModel(categories);
+
             return View(addEventViewModel);
         }
 
@@ -34,6 +36,7 @@ namespace CodingEvents.Controllers
         {
             if (ModelState.IsValid)
             {
+                EventCategory theCategory = context.Categories.Find(addEventViewModel.CategoryId);
                 Event newEvent = new Event
                 {
 
@@ -42,7 +45,7 @@ namespace CodingEvents.Controllers
                     ContactEmail = addEventViewModel.ContactEmail,
                     Location = addEventViewModel.Location,
                     Attendees = addEventViewModel.Attendees,
-                    Type = addEventViewModel.Type
+                    Category = theCategory
                 };
                 //EventData.Add(newEvent);
                 context.Events.Add(newEvent);
@@ -81,8 +84,9 @@ namespace CodingEvents.Controllers
         public IActionResult Edit(int eventId)
         {
             Event editingEvent = context.Events.Find(eventId);  //EventData.GetById(eventId);
-            ViewBag.eventToEdit = editingEvent;
-            ViewBag.title = "Edit Event" + editingEvent.Name + "(id = " + editingEvent.Id + ")";
+            context.Events.Add(editingEvent);
+            //ViewBag.eventToEdit = editingEvent;
+            //ViewBag.title = "Edit Event" + editingEvent.Name + "(id = " + editingEvent.Id + ")";
 
             return View();
         }

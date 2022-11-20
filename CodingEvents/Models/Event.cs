@@ -6,10 +6,11 @@
         public string Description { get; set; }
         public string ContactEmail { get; set; }
         public int Id { get; set; }
-      
-        public string Location { get; set; }  
+
+        public string Location { get; set; }
         public double Attendees { get; set; }
-        public EventType Type { get; set; }
+        public EventCategory Category { get; set; }
+        public int CategoryId { get; set; } 
 
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
