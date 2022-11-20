@@ -1,7 +1,6 @@
 ﻿<h1>@ViewBag.title</h1>
 
-<form method="post" action="/events/edit">
-    <div class="form-group">
+<form asp-controller="Events" action="Edit" method="post">
         <label for="name">Name</label>
         <input name="name" type="text" value="@ViewBag.eventToEdit.Name" />
     </div>

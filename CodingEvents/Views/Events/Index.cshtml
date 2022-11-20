@@ -4,16 +4,15 @@
 
 <h1>Coding Events</h1>
 
-<li class="nav-item">
-    <a class="nav-link text-dark" asp-area="" asp-controller="EventCategory" asp-action="Add">Create Category</a>
-</li>
-
 <p>
     <a asp-controller="Events" asp-action="Add">Add Event</a>
 </p>
 
 <p>
     <a asp-controller="Events" asp-action="Delete">Delete Event</a>
+</p>
+<p>
+    <a asp-controller="Events" asp-action="Edit">Edit Event</a>
 </p>
 
 @if (Model.Count == 0)
@@ -56,7 +55,7 @@ else
             <td>@evt.ContactEmail</td>
             <td>@evt.Location</td>
             <td>@evt.Attendees</td>
-            <td><a asp-controller="Events" asp-action="Edit" asp-route-id="@evt.Id">Edit Event</a></td>
+           
            
         </tr>
     }
