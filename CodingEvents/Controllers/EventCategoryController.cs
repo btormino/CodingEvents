@@ -40,14 +40,14 @@ namespace CodingEvents.Controllers
         {
             if (ModelState.IsValid)
             {
-                EventCategory newEventCategory = new EventCategory
+                EventCategory newCategory = new EventCategory
                 {
 
-                    Name = addEventCategoryViewModel.Name,
+                    Name = addEventCategoryViewModel.Name
                   
                 };
                 //EventData.Add(newEvent);
-                context.Categories.Add(newEventCategory);
+                context.Categories.Add(newCategory);
                 context.SaveChanges();
 
                 return Redirect("/EventCategory");

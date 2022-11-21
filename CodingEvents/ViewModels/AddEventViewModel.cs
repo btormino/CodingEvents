@@ -20,7 +20,7 @@ namespace CodingEvents.ViewModels
         public string Location { get; set; }
 
         [Range(0, 100000, ErrorMessage ="Number of attendees must be between 0 and 100,000")]
-        public double Attendees { get; set; }
+        public int Attendees { get; set; }
 
         [Required(ErrorMessage ="Category is required.")]
         public int CategoryId { get; set; }

@@ -1,6 +1,5 @@
-﻿@using CodingEvents.Models
+﻿@model List<CodingEvents.Models.Event>
 
-@model List<CodingEvents.Models.Event>
 
 <h1>Coding Events</h1>
 
@@ -33,7 +32,7 @@ else
             Description
         </th>
         <th>
-            Type
+            Category
         </th>
         <th>
             Contact Email
@@ -51,7 +50,7 @@ else
             <td>@evt.Id</td>
             <td>@evt.Name</td>
             <td>@evt.Description</td>
-            <td>@evt.Type</td>
+            <td>@evt.Category.Name</td>
             <td>@evt.ContactEmail</td>
             <td>@evt.Location</td>
             <td>@evt.Attendees</td>

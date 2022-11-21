@@ -2,6 +2,7 @@
 using CodingEvents.Models;
 using CodingEvents.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodingEvents.Controllers
 {
@@ -17,7 +18,9 @@ namespace CodingEvents.Controllers
         public IActionResult Index()
         {
             //  List<Event> events = new List<Event>(EventData.GetAll());
-            List<Event> events = context.Events.ToList();
+            List<Event> events = context.Events
+                .Include(e => e.Category)
+                .ToList();
 
             return View(events);
         }
@@ -27,7 +30,7 @@ namespace CodingEvents.Controllers
         {
             List<EventCategory> categories = context.Categories.ToList();
             AddEventViewModel addEventViewModel = new AddEventViewModel(categories);
-
+                
             return View(addEventViewModel);
         }
 
@@ -93,7 +96,7 @@ namespace CodingEvents.Controllers
 
         [HttpPost]
         [Route("/Events/Edit")]
-        public IActionResult SubmitEditEventForm(int eventId, string name, string descripton, string location, double attendees)
+        public IActionResult SubmitEditEventForm(int eventId, string name, string descripton, string location, int attendees)
         {
 
             Event editngEvent = context.Events.Find(eventId);
