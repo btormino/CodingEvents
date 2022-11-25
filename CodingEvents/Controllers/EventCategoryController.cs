@@ -36,7 +36,7 @@ namespace CodingEvents.Controllers
 
         [HttpPost]
         //[Route("EventCategory/Create")]
-        public IActionResult ProcessCreateEventCategoryForm(AddEventCategoryViewModel addEventCategoryViewModel)
+       public IActionResult ProcessCreateEventCategoryForm(AddEventCategoryViewModel addEventCategoryViewModel)
         {
             if (ModelState.IsValid)
             {

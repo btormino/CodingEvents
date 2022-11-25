@@ -13,13 +13,14 @@
         public int CategoryId { get; set; }
 
 
-        public Event(string name, string description, string contactEmail, string location, int attendees)
+        public Event(string name, string description, string contactEmail, string location, int attendees, EventCategory category)
         {
             Name = name;
             Description = description;
             ContactEmail = contactEmail;
             Location = location;
             Attendees = attendees;
+            Category = category;
         }
 
         public Event()

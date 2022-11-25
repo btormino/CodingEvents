@@ -99,12 +99,12 @@ namespace CodingEvents.Controllers
         public IActionResult SubmitEditEventForm(int eventId, string name, string descripton, string location, int attendees)
         {
 
-            Event editngEvent = context.Events.Find(eventId);
+            Event editingEvent = context.Events.Find(eventId);
                 //EventData.GetById(eventId);
-            editngEvent.Name = name;
-            editngEvent.Description = descripton;
-            editngEvent.Location = location;
-            editngEvent.Attendees = attendees;
+            editingEvent.Name = name;
+            editingEvent.Description = descripton;
+            editingEvent.Location = location;
+            editingEvent.Attendees = attendees;
                 
             return Redirect("/Events");
         }
