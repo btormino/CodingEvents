@@ -2,6 +2,7 @@
 using CodingEvents.Models;
 using CodingEvents.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodingEvents.Controllers
 {
@@ -17,7 +18,7 @@ namespace CodingEvents.Controllers
         public IActionResult Index()
         {
             //  List<Event> events = new List<Event>(EventData.GetAll());
-            List<Event> events = context.Events.ToList();
+            List<Event> events = context.Events.Include(e => e.Category).ToList();
 
             return View(events);
         }
@@ -26,7 +27,7 @@ namespace CodingEvents.Controllers
         public IActionResult Add ()
         {
             List<EventCategory> categories = context.Categories.ToList();
-            AddEventViewModel addEventViewModel = new AddEventViewModel(categories);
+            AddEventViewModel addEventViewModel = new AddEventViewModel(context.Categories.ToList());
 
             return View(addEventViewModel);
         }
