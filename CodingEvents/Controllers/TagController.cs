@@ -62,7 +62,7 @@ namespace CodingEvents.Controllers
                     .Where(et => et.EventId == eventId)
                     .Where(et => et.TagId == tagId)
                     .ToList();
-               if (existingItems.Count == 0)
+                if (existingItems.Count == 0)
                 {
                     EventTag eventTag = new EventTag
                     {

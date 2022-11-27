@@ -22,7 +22,8 @@ namespace CodingEvents.ViewModels
             TagText = "";
             for (var i = 0; i < eventTags.Count; i++)
             {
-                TagText += ('#' + eventTags[i].Tag.Name);
+                TagText += '#' + eventTags[i].Tag.Name;
+
                 if (i < eventTags.Count - 1)
                 {
                     TagText += ", ";

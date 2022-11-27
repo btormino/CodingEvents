@@ -18,7 +18,9 @@ namespace CodingEvents.Controllers
         public IActionResult Index()
         {
             //  List<Event> events = new List<Event>(EventData.GetAll());
-            List<Event> events = context.Events.Include(e => e.Category).ToList();
+            List<Event> events = context.Events
+                .Include(e => e.Category)
+                .ToList();
 
             return View(events);
         }
@@ -27,7 +29,7 @@ namespace CodingEvents.Controllers
         public IActionResult Add ()
         {
             List<EventCategory> categories = context.Categories.ToList();
-            AddEventViewModel addEventViewModel = new AddEventViewModel(context.Categories.ToList());
+            AddEventViewModel addEventViewModel = new AddEventViewModel(categories);
 
             return View(addEventViewModel);
         }
@@ -110,7 +112,9 @@ namespace CodingEvents.Controllers
         public IActionResult Detail(int id)
         {
             Event theEvent = context.Events
-                .Include(e => e.Category).Single(e => e.Id == id);
+                .Include(e => e.Category)
+                .Single(e => e.Id == id);
+
             List<EventTag> eventTags = context.EventTags
                 .Where(et => et.EventId == id)
                 .Include(et => et.Tag)
